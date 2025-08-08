@@ -21,8 +21,8 @@ func main() {
 	failOnError(err, "Failed to open channel")
 
 	err = ch.ExchangeDeclare(
-		"direct_logs",
-		"direct",
+		"topic_logs",
+		"topic",
 		true,
 		false,
 		false,
@@ -35,7 +35,7 @@ func main() {
 	severity := os.Args[1] // ej: "error", "warn", etc.
 
 	err = ch.Publish(
-		"direct_logs",
+		"topic_logs",
 		severity, // routing key
 		false,
 		false,

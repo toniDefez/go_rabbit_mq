@@ -21,13 +21,13 @@ func main() {
 	failOnError(err, "Failed to open channel")
 
 	err = ch.ExchangeDeclare(
-		"direct_logs", // name
-		"direct",      // type
-		true,          // durable
-		false,         // auto-deleted
-		false,         // internal
-		false,         // no-wait
-		nil,           // args
+		"topic_logs", // name
+		"topic",      // type
+		true,         // durable
+		false,        // auto-deleted
+		false,        // internal
+		false,        // no-wait
+		nil,          // args
 	)
 	failOnError(err, "Failed to declare exchange")
 
@@ -49,9 +49,9 @@ func main() {
 
 	for _, s := range severities {
 		err = ch.QueueBind(
-			q.Name,        // queue name
-			s,             // binding key
-			"direct_logs", // exchange
+			q.Name,       // queue name
+			s,            // binding key
+			"topic_logs", // exchange
 			false,
 			nil,
 		)
